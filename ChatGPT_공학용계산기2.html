@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공학용 계산기</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    #calculator {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        text-align: center;
+        width: 300px;
+    }
+    h2 {
+        margin-top: 0;
+        color: #333;
+    }
+    #input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 0 auto;
+        font-size: 20px;
+        border: none;
+        border-bottom: 2px solid #ccc;
+        outline: none;
+        text-align: right;
+    }
+    #result {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #666;
+    }
+    input[type="button"] {
+        width: 45px;
+        height: 45px;
+        margin: 5px;
+        font-size: 18px;
+        border: none;
+        border-radius: 50%;
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    input[type="button"]:hover {
+        background-color: #45a049;
+    }
+    input[type="button"].operator {
+        background-color: #2196f3;
+    }
+    input[type="button"].operator:hover {
+        background-color: #1e87dc;
+    }
+    input[type="button"].clear {
+        background-color: #f44336;
+    }
+    input[type="button"].clear:hover {
+        background-color: #d32f2f;
+    }
+</style>
+</head>
+<body>
+<div id="calculator">
+    <h2>공학용 계산기</h2>
+    <input type="text" id="input" readonly>
+    <div id="result"></div>
+    <table>
+        <tr>
+            <td><input type="button" value="7" onclick="addToInput('7')"></td>
+            <td><input type="button" value="8" onclick="addToInput('8')"></td>
+            <td><input type="button" value="9" onclick="addToInput('9')"></td>
+            <td><input type="button" value="/" class="operator" onclick="addToInput('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="addToInput('4')"></td>
+            <td><input type="button" value="5" onclick="addToInput('5')"></td>
+            <td><input type="button" value="6" onclick="addToInput('6')"></td>
+            <td><input type="button" value="*" class="operator" onclick="addToInput('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="addToInput('1')"></td>
+            <td><input type="button" value="2" onclick="addToInput('2')"></td>
+            <td><input type="button" value="3" onclick="addToInput('3')"></td>
+            <td><input type="button" value="-" class="operator" onclick="addToInput('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="addToInput('0')"></td>
+            <td><input type="button" value="." onclick="addToInput('.')"></td>
+            <td><input type="button" value="C" class="clear" onclick="clearInput()"></td>
+            <td><input type="button" value="+" class="operator" onclick="addToInput('+')"></td>
+        </tr>
+        <tr>
+            <td colspan="4"><input type="button" value="=" class="operator" onclick="calculate()"></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    function addToInput(value) {
+        document.getElementById('input').value += value;
+    }
+
+    function clearInput() {
+        document.getElementById('input').value = '';
+        document.getElementById('result').innerText = '';
+    }
+
+    function calculate() {
+        try {
+            let result = eval(document.getElementById('input').value);
+            document.getElementById('result').innerText = '결과: ' + result;
+        } catch (error) {
+            document.getElementById('result').innerText = '잘못된 입력입니다.';
+        }
+    }
+</script>
+</body>
+</html>
